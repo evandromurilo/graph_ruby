@@ -1,0 +1,5 @@
+GRAPH_RUBY
+
+Author: Evandro Murilo
+
+Description: Ruby implementation of breadth-first, depth-first and Dijkstra's graph search algorithms.

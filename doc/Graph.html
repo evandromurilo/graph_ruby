@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Graph - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">Hash
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-bf_search">#bf_search</a>
+    
+    <li ><a href="#method-i-bf_select">#bf_select</a>
+    
+    <li ><a href="#method-i-df_search">#df_search</a>
+    
+    <li ><a href="#method-i-df_select">#df_select</a>
+    
+    <li ><a href="#method-i-dj_search">#dj_search</a>
+    
+    <li ><a href="#method-i-reconstruct_path">#reconstruct_path</a>
+    
+    <li ><a href="#method-i-search">#search</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Graph">
+  <h1 id="class-Graph" class="class">
+    class Graph
+  </h1>
+
+  <section class="description">
+    
+<p>This class holds all the graph nodes and their neighbours into a hash and
+defines search functions that can be used to search the graph.</p>
+
+<p>Every node is an entry into the hash, its value should be a new hash
+containing all the neighbouring nodes and their  distances.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-bf_search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">bf_search</span><span
+            class="method-args">(start, goal)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Runs a breadth-first search on the graph to find the path with the least
+amount of nodes from <code>start</code> to <code>goal</code>. Params:</p>
+<dl class="rdoc-list note-list"><dt><code>start</code>
+<dd>
+<p>key of start node</p>
+</dd><dt><code>goal</code>
+<dd>
+<p>key of end node</p>
+</dd></dl>
+
+<p>Returns:</p>
+<ul><li>
+<p>an <code>Array</code> containing the shortest path from start to goal</p>
+</li><li>
+<p><code>nil</code> if no path is found</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="bf_search-source">
+            <pre><span class="ruby-comment"># File graph.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">bf_search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>)
+    <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-value">:bf_select</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-bf_select" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">bf_select</span><span
+            class="method-args">(fringe)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="bf_select-source">
+            <pre><span class="ruby-comment"># File graph.rb, line 114</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">bf_select</span>(<span class="ruby-identifier">fringe</span>)
+    <span class="ruby-identifier">fringe</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-value">0</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-df_search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">df_search</span><span
+            class="method-args">(start, goal)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Runs a depth-first search on the graph to find a path from
+<code>start</code> to <code>goal</code>. Params:</p>
+<dl class="rdoc-list note-list"><dt><code>start</code>
+<dd>
+<p>the key of the start node</p>
+</dd><dt><code>goal</code>
+<dd>
+<p>the key of the end node</p>
+</dd></dl>
+
+<p>Returns:</p>
+<ul><li>
+<p>an <code>Array</code> containing a path from start to goal</p>
+</li><li>
+<p>nil if no path is found</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="df_search-source">
+            <pre><span class="ruby-comment"># File graph.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">df_search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>)
+    <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-value">:df_select</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-df_select" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">df_select</span><span
+            class="method-args">(fringe)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="df_select-source">
+            <pre><span class="ruby-comment"># File graph.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">df_select</span>(<span class="ruby-identifier">fringe</span>)
+    <span class="ruby-identifier">fringe</span>.<span class="ruby-identifier">pop</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dj_search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dj_search</span><span
+            class="method-args">(start, goal)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Runs a search using the Dijkstra&#39;s algorithm to find the lowest cost
+path from <code>start</code> to <code>goal</code>. Params:</p>
+<dl class="rdoc-list note-list"><dt><code>start</code>
+<dd>
+<p>key of start node</p>
+</dd><dt><code>goal</code>
+<dd>
+<p>key of end node</p>
+</dd></dl>
+
+<p>Returns:</p>
+<ul><li>
+<p>a <code>Hash</code> containing a list representing the cheapest path
+(:path) and the total cost (:cost)</p>
+</li><li>
+<p><code>nil</code> if no path is found</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="dj_search-source">
+            <pre><span class="ruby-comment"># File graph.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dj_search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>)
+    <span class="ruby-identifier">costs</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>)
+    <span class="ruby-identifier">checked</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">parents</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>)
+
+    <span class="ruby-identifier">costs</span>[<span class="ruby-identifier">start</span>] = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">curr</span> = <span class="ruby-identifier">start</span>
+
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">curr</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">checked</span>[<span class="ruby-identifier">curr</span>] = <span class="ruby-keyword">true</span>
+
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">curr</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">goal</span>
+            <span class="ruby-keyword">return</span> <span class="ruby-constant">Hash</span>[<span class="ruby-value">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">reconstruct_path</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-identifier">parents</span>), <span class="ruby-value">:cost</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">costs</span>[<span class="ruby-identifier">curr</span>]]
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">self</span>[<span class="ruby-identifier">curr</span>].<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">cost</span><span class="ruby-operator">|</span> 
+            <span class="ruby-identifier">new_cost</span> = <span class="ruby-identifier">costs</span>[<span class="ruby-identifier">curr</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">cost</span>
+
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_cost</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">costs</span>[<span class="ruby-identifier">key</span>]
+                <span class="ruby-identifier">costs</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">new_cost</span>
+                <span class="ruby-identifier">parents</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">curr</span>
+            <span class="ruby-keyword">end</span>
+        }
+
+        <span class="ruby-identifier">curr</span> = <span class="ruby-identifier">costs</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">checked</span>[<span class="ruby-identifier">k</span>]}.<span class="ruby-identifier">min_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>}[<span class="ruby-value">0</span>]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reconstruct_path" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reconstruct_path</span><span
+            class="method-args">(start, goal, parents)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Recursive method that reconstructs the path from start to goal. Params:</p>
+<dl class="rdoc-list note-list"><dt><code>start</code>
+<dd>
+<p>key of start node</p>
+</dd><dt><code>goal</code>
+<dd>
+<p>key of end node</p>
+</dd><dt><code>parents</code>
+<dd>
+<p>a <code>Hash</code> that maps from a node to its parent</p>
+</dd></dl>
+
+<p>Returns:</p>
+<ul><li>
+<p>an <code>Array</code> containing the reconstructed path from
+<code>start</code> to <code>goal</code></p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="reconstruct_path-source">
+            <pre><span class="ruby-comment"># File graph.rb, line 110</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reconstruct_path</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-identifier">parents</span>)
+    <span class="ruby-identifier">start</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">goal</span> <span class="ruby-operator">?</span> [<span class="ruby-identifier">goal</span>] <span class="ruby-operator">:</span> <span class="ruby-identifier">reconstruct_path</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">parents</span>[<span class="ruby-identifier">goal</span>], <span class="ruby-identifier">parents</span>) <span class="ruby-operator">+</span> [<span class="ruby-identifier">goal</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">search</span><span
+            class="method-args">(start, goal, selection_method)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Generic search method that serves as a foundation for both
+<code>bf_search</code> and <code>df_search</code>. Params:</p>
+<dl class="rdoc-list note-list"><dt><code>start</code>
+<dd>
+<p>key of start node</p>
+</dd><dt><code>goal</code>
+<dd>
+<p>key of end node</p>
+</dd><dt><code>selection_method</code>
+<dd>
+<p>:df_select or :bf_select</p>
+</dd></dl>
+
+<p>Returns:</p>
+<ul><li>
+<p>an <code>Array</code> containing a path from <code>start</code> to
+<code>goal</code></p>
+</li><li>
+<p><code>nil</code> if no path is found</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="search-source">
+            <pre><span class="ruby-comment"># File graph.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-identifier">selection_method</span>)
+    <span class="ruby-identifier">checked</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">parents</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>)
+    <span class="ruby-identifier">fringe</span> = [<span class="ruby-identifier">start</span>]
+
+    <span class="ruby-identifier">checked</span>[<span class="ruby-identifier">start</span>] = <span class="ruby-keyword">true</span>
+
+    <span class="ruby-keyword">while</span> <span class="ruby-operator">!</span><span class="ruby-identifier">fringe</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">curr</span> = <span class="ruby-identifier">send</span>(<span class="ruby-identifier">selection_method</span>, <span class="ruby-identifier">fringe</span>)
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">reconstruct_path</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-identifier">parents</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">curr</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">goal</span>
+
+        <span class="ruby-keyword">self</span>[<span class="ruby-identifier">curr</span>].<span class="ruby-identifier">each_key</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">checked</span>[<span class="ruby-identifier">key</span>]
+            <span class="ruby-identifier">fringe</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">key</span>)
+            <span class="ruby-identifier">checked</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-keyword">true</span>
+            <span class="ruby-identifier">parents</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">curr</span>
+        }
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
