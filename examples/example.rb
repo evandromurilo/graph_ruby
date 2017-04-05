@@ -1,7 +1,6 @@
 require_relative "../src/graph"
 
 graph = Graph.new
-graph.load("data")
 
 graph["john"] = Hash.new
 graph["john"]["mary"] = 1
