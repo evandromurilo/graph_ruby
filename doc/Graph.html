@@ -72,11 +72,7 @@
     
     <li ><a href="#method-i-bf_search">#bf_search</a>
     
-    <li ><a href="#method-i-bf_select">#bf_select</a>
-    
     <li ><a href="#method-i-df_search">#df_search</a>
-    
-    <li ><a href="#method-i-df_select">#df_select</a>
     
     <li ><a href="#method-i-dj_search">#dj_search</a>
     
@@ -162,40 +158,7 @@ amount of nodes from <code>start</code> to <code>goal</code>. Params:</p>
           <div class="method-source-code" id="bf_search-source">
             <pre><span class="ruby-comment"># File src/graph.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">bf_search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>)
-    <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-value">:bf_select</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-bf_select" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">bf_select</span><span
-            class="method-args">(fringe)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Used by <a href="Graph.html#method-i-bf_search">bf_search</a>.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="bf_select-source">
-            <pre><span class="ruby-comment"># File src/graph.rb, line 115</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">bf_select</span>(<span class="ruby-identifier">fringe</span>)
-    <span class="ruby-identifier">fringe</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">fringe</span><span class="ruby-operator">|</span> <span class="ruby-identifier">fringe</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-value">0</span>)}
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -243,40 +206,7 @@ amount of nodes from <code>start</code> to <code>goal</code>. Params:</p>
           <div class="method-source-code" id="df_search-source">
             <pre><span class="ruby-comment"># File src/graph.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">df_search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>)
-    <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-value">:df_select</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-df_select" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">df_select</span><span
-            class="method-args">(fringe)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Used by <a href="Graph.html#method-i-df_search">df_search</a>.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="df_select-source">
-            <pre><span class="ruby-comment"># File src/graph.rb, line 120</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">df_select</span>(<span class="ruby-identifier">fringe</span>)
-    <span class="ruby-identifier">fringe</span>.<span class="ruby-identifier">pop</span>
+    <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">fringe</span><span class="ruby-operator">|</span> <span class="ruby-identifier">fringe</span>.<span class="ruby-identifier">pop</span>}
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -397,7 +327,7 @@ the file. Example:</p>
 
           
           <div class="method-source-code" id="load-source">
-            <pre><span class="ruby-comment"># File src/graph.rb, line 134</span>
+            <pre><span class="ruby-comment"># File src/graph.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load</span>(<span class="ruby-identifier">filename</span>)
     <span class="ruby-identifier">data</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-string">&quot;r&quot;</span>)
     
@@ -477,7 +407,7 @@ the file. Example:</p>
         
         <div class="method-heading">
           <span class="method-name">search</span><span
-            class="method-args">(start, goal, selection_method)</span>
+            class="method-args">(start, goal) { |fringe| ... }</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -513,7 +443,7 @@ href="Graph.html#method-i-df_search">df_search</a>. Params:</p>
           
           <div class="method-source-code" id="search-source">
             <pre><span class="ruby-comment"># File src/graph.rb, line 82</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-identifier">selection_method</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>)
     <span class="ruby-identifier">checked</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">false</span>)
     <span class="ruby-identifier">parents</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>)
     <span class="ruby-identifier">fringe</span> = [<span class="ruby-identifier">start</span>]
@@ -521,7 +451,7 @@ href="Graph.html#method-i-df_search">df_search</a>. Params:</p>
     <span class="ruby-identifier">checked</span>[<span class="ruby-identifier">start</span>] = <span class="ruby-keyword">true</span>
 
     <span class="ruby-keyword">while</span> <span class="ruby-operator">!</span><span class="ruby-identifier">fringe</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">do</span>
-        <span class="ruby-identifier">curr</span> = <span class="ruby-identifier">send</span>(<span class="ruby-identifier">selection_method</span>, <span class="ruby-identifier">fringe</span>)
+        <span class="ruby-identifier">curr</span> = <span class="ruby-keyword">yield</span> <span class="ruby-identifier">fringe</span>
         <span class="ruby-keyword">return</span> <span class="ruby-identifier">reconstruct_path</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-identifier">parents</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">curr</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">goal</span>
 
         <span class="ruby-keyword">self</span>[<span class="ruby-identifier">curr</span>].<span class="ruby-identifier">each_key</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
