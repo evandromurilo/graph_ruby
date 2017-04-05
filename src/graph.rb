@@ -71,11 +71,11 @@ class Graph < Hash
     end
 
     # Generic search method that serves as a foundation for
-    # both +bf_search+ and +df_search+.
+    # both #bf_search and #df_search.
     # Params:
     # +start+:: key of start node
     # +goal+:: key of end node
-    # +selection_method+:: :df_select or :bf_select
+    # +selection_method+:: +:df_select+ or +:bf_select+
     # Returns:
     # * an +Array+ containing a path from +start+ to +goal+
     # * +nil+ if no path is found
@@ -111,11 +111,40 @@ class Graph < Hash
         start == goal ? [goal] : reconstruct_path(start, parents[goal], parents) + [goal]
     end
 
+    # Used by #bf_search.
     def bf_select(fringe)
         fringe.delete_at(0)
     end
 
+    # Used by #df_search.
     def df_select(fringe)
         fringe.pop
+    end
+
+    # Loads a graph stored in a file. Every line of the file should
+    # define a node name and its neighbours. Every neighbour should
+    # be defined at some point in the file. Example:  
+    # <tt>mary john(2) phil(4) alex(12)</tt>  
+    # <tt>john mary(2)</tt>  
+    # <tt>alex phil(5) mary(1)</tt>  
+    # <tt>phil</tt>  
+    #   
+    # Params:
+    # +filename+:: filename of the data file
+    def load(filename)
+        data = File.open(filename, "r")
+        
+        while line = data.gets
+            tokens = line.chomp.split
+            definition = tokens.delete_at(0)
+            self[definition] = Hash.new
+
+            tokens.each {|t| 
+                t = t.gsub(/[()]/, " ").split
+                self[definition][t[0]] = t[1].to_i
+            }
+        end
+
+        data.close
     end
 end

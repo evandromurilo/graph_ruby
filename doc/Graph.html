@@ -80,6 +80,8 @@
     
     <li ><a href="#method-i-dj_search">#dj_search</a>
     
+    <li ><a href="#method-i-load">#load</a>
+    
     <li ><a href="#method-i-reconstruct_path">#reconstruct_path</a>
     
     <li ><a href="#method-i-search">#search</a>
@@ -158,7 +160,7 @@ amount of nodes from <code>start</code> to <code>goal</code>. Params:</p>
 
           
           <div class="method-source-code" id="bf_search-source">
-            <pre><span class="ruby-comment"># File graph.rb, line 32</span>
+            <pre><span class="ruby-comment"># File src/graph.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">bf_search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>)
     <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-value">:bf_select</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -185,13 +187,13 @@ amount of nodes from <code>start</code> to <code>goal</code>. Params:</p>
 
         <div class="method-description">
           
-          
+          <p>Used by <a href="Graph.html#method-i-bf_search">bf_search</a>.</p>
           
           
 
           
           <div class="method-source-code" id="bf_select-source">
-            <pre><span class="ruby-comment"># File graph.rb, line 114</span>
+            <pre><span class="ruby-comment"># File src/graph.rb, line 115</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">bf_select</span>(<span class="ruby-identifier">fringe</span>)
     <span class="ruby-identifier">fringe</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-value">0</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -239,7 +241,7 @@ amount of nodes from <code>start</code> to <code>goal</code>. Params:</p>
 
           
           <div class="method-source-code" id="df_search-source">
-            <pre><span class="ruby-comment"># File graph.rb, line 19</span>
+            <pre><span class="ruby-comment"># File src/graph.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">df_search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>)
     <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-value">:df_select</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -266,13 +268,13 @@ amount of nodes from <code>start</code> to <code>goal</code>. Params:</p>
 
         <div class="method-description">
           
-          
+          <p>Used by <a href="Graph.html#method-i-df_search">df_search</a>.</p>
           
           
 
           
           <div class="method-source-code" id="df_select-source">
-            <pre><span class="ruby-comment"># File graph.rb, line 118</span>
+            <pre><span class="ruby-comment"># File src/graph.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">df_select</span>(<span class="ruby-identifier">fringe</span>)
     <span class="ruby-identifier">fringe</span>.<span class="ruby-identifier">pop</span>
 <span class="ruby-keyword">end</span></pre>
@@ -321,7 +323,7 @@ path from <code>start</code> to <code>goal</code>. Params:</p>
 
           
           <div class="method-source-code" id="dj_search-source">
-            <pre><span class="ruby-comment"># File graph.rb, line 44</span>
+            <pre><span class="ruby-comment"># File src/graph.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dj_search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>)
     <span class="ruby-identifier">costs</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>)
     <span class="ruby-identifier">checked</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">false</span>)
@@ -349,6 +351,68 @@ path from <code>start</code> to <code>goal</code>. Params:</p>
         <span class="ruby-identifier">curr</span> = <span class="ruby-identifier">costs</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">checked</span>[<span class="ruby-identifier">k</span>]}.<span class="ruby-identifier">min_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>}[<span class="ruby-value">0</span>]
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load</span><span
+            class="method-args">(filename)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Loads a graph stored in a file. Every line of the file should define a node
+name and its neighbours. Every neighbour should be defined at some point in
+the file. Example:</p>
+
+<p><code>mary john(2) phil(4) alex(12)</code></p>
+
+<p><code>john mary(2)</code></p>
+
+<p><code>alex phil(5) mary(1)</code></p>
+
+<p><code>phil</code></p>
+
+<p>Params:</p>
+<dl class="rdoc-list note-list"><dt><code>filename</code>
+<dd>
+<p>filename of the data file</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="load-source">
+            <pre><span class="ruby-comment"># File src/graph.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load</span>(<span class="ruby-identifier">filename</span>)
+    <span class="ruby-identifier">data</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-string">&quot;r&quot;</span>)
+    
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">gets</span>
+        <span class="ruby-identifier">tokens</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">split</span>
+        <span class="ruby-identifier">definition</span> = <span class="ruby-identifier">tokens</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-value">0</span>)
+        <span class="ruby-keyword">self</span>[<span class="ruby-identifier">definition</span>] = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+
+        <span class="ruby-identifier">tokens</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> 
+            <span class="ruby-identifier">t</span> = <span class="ruby-identifier">t</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[()]/</span>, <span class="ruby-string">&quot; &quot;</span>).<span class="ruby-identifier">split</span>
+            <span class="ruby-keyword">self</span>[<span class="ruby-identifier">definition</span>][<span class="ruby-identifier">t</span>[<span class="ruby-value">0</span>]] = <span class="ruby-identifier">t</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_i</span>
+        }
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">data</span>.<span class="ruby-identifier">close</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -395,7 +459,7 @@ path from <code>start</code> to <code>goal</code>. Params:</p>
 
           
           <div class="method-source-code" id="reconstruct_path-source">
-            <pre><span class="ruby-comment"># File graph.rb, line 110</span>
+            <pre><span class="ruby-comment"># File src/graph.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reconstruct_path</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-identifier">parents</span>)
     <span class="ruby-identifier">start</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">goal</span> <span class="ruby-operator">?</span> [<span class="ruby-identifier">goal</span>] <span class="ruby-operator">:</span> <span class="ruby-identifier">reconstruct_path</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">parents</span>[<span class="ruby-identifier">goal</span>], <span class="ruby-identifier">parents</span>) <span class="ruby-operator">+</span> [<span class="ruby-identifier">goal</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -422,8 +486,9 @@ path from <code>start</code> to <code>goal</code>. Params:</p>
 
         <div class="method-description">
           
-          <p>Generic search method that serves as a foundation for both
-<code>bf_search</code> and <code>df_search</code>. Params:</p>
+          <p>Generic search method that serves as a foundation for both <a
+href="Graph.html#method-i-bf_search">bf_search</a> and <a
+href="Graph.html#method-i-df_search">df_search</a>. Params:</p>
 <dl class="rdoc-list note-list"><dt><code>start</code>
 <dd>
 <p>key of start node</p>
@@ -432,7 +497,7 @@ path from <code>start</code> to <code>goal</code>. Params:</p>
 <p>key of end node</p>
 </dd><dt><code>selection_method</code>
 <dd>
-<p>:df_select or :bf_select</p>
+<p><code>:df_select</code> or <code>:bf_select</code></p>
 </dd></dl>
 
 <p>Returns:</p>
@@ -447,7 +512,7 @@ path from <code>start</code> to <code>goal</code>. Params:</p>
 
           
           <div class="method-source-code" id="search-source">
-            <pre><span class="ruby-comment"># File graph.rb, line 82</span>
+            <pre><span class="ruby-comment"># File src/graph.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-identifier">selection_method</span>)
     <span class="ruby-identifier">checked</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">false</span>)
     <span class="ruby-identifier">parents</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>)
