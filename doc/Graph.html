@@ -327,7 +327,7 @@ the file. Example:</p>
 
           
           <div class="method-source-code" id="load-source">
-            <pre><span class="ruby-comment"># File src/graph.rb, line 124</span>
+            <pre><span class="ruby-comment"># File src/graph.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load</span>(<span class="ruby-identifier">filename</span>)
     <span class="ruby-identifier">data</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-string">&quot;r&quot;</span>)
     
@@ -389,7 +389,7 @@ the file. Example:</p>
 
           
           <div class="method-source-code" id="reconstruct_path-source">
-            <pre><span class="ruby-comment"># File src/graph.rb, line 110</span>
+            <pre><span class="ruby-comment"># File src/graph.rb, line 109</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reconstruct_path</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>, <span class="ruby-identifier">parents</span>)
     <span class="ruby-identifier">start</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">goal</span> <span class="ruby-operator">?</span> [<span class="ruby-identifier">goal</span>] <span class="ruby-operator">:</span> <span class="ruby-identifier">reconstruct_path</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">parents</span>[<span class="ruby-identifier">goal</span>], <span class="ruby-identifier">parents</span>) <span class="ruby-operator">+</span> [<span class="ruby-identifier">goal</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -425,9 +425,6 @@ href="Graph.html#method-i-df_search">df_search</a>. Params:</p>
 </dd><dt><code>goal</code>
 <dd>
 <p>key of end node</p>
-</dd><dt><code>selection_method</code>
-<dd>
-<p><code>:df_select</code> or <code>:bf_select</code></p>
 </dd></dl>
 
 <p>Returns:</p>
@@ -442,7 +439,7 @@ href="Graph.html#method-i-df_search">df_search</a>. Params:</p>
 
           
           <div class="method-source-code" id="search-source">
-            <pre><span class="ruby-comment"># File src/graph.rb, line 82</span>
+            <pre><span class="ruby-comment"># File src/graph.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">goal</span>)
     <span class="ruby-identifier">checked</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">false</span>)
     <span class="ruby-identifier">parents</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>)

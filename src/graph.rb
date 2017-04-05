@@ -75,7 +75,6 @@ class Graph < Hash
     # Params:
     # +start+:: key of start node
     # +goal+:: key of end node
-    # +selection_method+:: +:df_select+ or +:bf_select+
     # Returns:
     # * an +Array+ containing a path from +start+ to +goal+
     # * +nil+ if no path is found
