@@ -17,7 +17,7 @@ class Graph < Hash
     # * an +Array+ containing a path from start to goal
     # * nil if no path is found
     def df_search(start, goal)
-        search(start, goal, :df_select)
+        search(start, goal) {|fringe| fringe.pop}
     end
 
     # Runs a breadth-first search on the graph to find
@@ -30,7 +30,7 @@ class Graph < Hash
     # * an +Array+ containing the shortest path from start to goal
     # * +nil+ if no path is found
     def bf_search(start, goal)
-        search(start, goal, :bf_select)
+        search(start, goal) {|fringe| fringe.delete_at(0)}
     end
 
     # Runs a search using the Dijkstra's algorithm to find
@@ -79,7 +79,7 @@ class Graph < Hash
     # Returns:
     # * an +Array+ containing a path from +start+ to +goal+
     # * +nil+ if no path is found
-    def search(start, goal, selection_method)
+    def search(start, goal)
         checked = Hash.new(false)
         parents = Hash.new(nil)
         fringe = [start]
@@ -87,7 +87,7 @@ class Graph < Hash
         checked[start] = true
 
         while !fringe.empty? do
-            curr = send(selection_method, fringe)
+            curr = yield fringe
             return reconstruct_path(start, goal, parents) if curr == goal
 
             self[curr].each_key {|key|
@@ -109,16 +109,6 @@ class Graph < Hash
     # * an +Array+ containing the reconstructed path from +start+ to +goal+
     def reconstruct_path(start, goal, parents)
         start == goal ? [goal] : reconstruct_path(start, parents[goal], parents) + [goal]
-    end
-
-    # Used by #bf_search.
-    def bf_select(fringe)
-        fringe.delete_at(0)
-    end
-
-    # Used by #df_search.
-    def df_select(fringe)
-        fringe.pop
     end
 
     # Loads a graph stored in a file. Every line of the file should
